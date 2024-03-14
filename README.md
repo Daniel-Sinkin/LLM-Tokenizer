@@ -1,6 +1,8 @@
 # LLM-Tokenizer
 ## Introduction
-My personal implementation of an LLM Tokenizer
+My personal implementation of an LLM Tokenizer.
+
+As of now I'm not entirely sure what the scope of this repo will be, I'll follow the lecture and will consider where to go next afterwards.
 
 ## Acknowledgements
 This project was mainly inspired by the great video lectures on Neural Networks
