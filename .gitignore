@@ -143,3 +143,6 @@ dmypy.json
 
 # Logs
 *.log
+
+# Everything in the data folder might be copyrighted, so we don't upload it
+data/*
