@@ -5,6 +5,9 @@ it recursively replaces that pair which is the most common by a new character
 thus extending the alphabet by one character and reducing the sequence
 lenght by 1/2 of the number of pars of that character.
 
+This script was just me getting used to the algo, this is deprecated by
+the `byte_pair_encoding_bytecode.py` script.
+
 See also https://en.wikipedia.org/wiki/Byte_pair_encoding
 """
 
