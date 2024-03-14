@@ -44,13 +44,14 @@ def get_byte_pair_encoding(
     argmax, argmax_count = pairs_argmax(_bytecodes)
 
     iteration = 0
-    alphabat_map = {}
+    alphabet_map = {x: None for x in set(_bytecodes)}
     while argmax_count > 1:
         i = 0
         while True:
             if (_bytecodes[i], _bytecodes[i + 1]) == argmax:
-                alphabat_map[255 + iteration] = argmax
-                _bytecodes[i] = 255 + iteration
+                new_token = 256 + iteration
+                alphabet_map[new_token] = argmax
+                _bytecodes[i] = new_token
                 del _bytecodes[i + 1]
 
             i += 1
@@ -60,7 +61,7 @@ def get_byte_pair_encoding(
 
         argmax, argmax_count = pairs_argmax(_bytecodes)
 
-    return _bytecodes, alphabat_map
+    return _bytecodes, alphabet_map
 
 
 def print_example() -> None:
