@@ -16,6 +16,11 @@ by [Andrej Karpathy](https://karpathy.ai).
 * [TikTokenizer Webapp](https://tiktokenizer.vercel.app)
 * [tinyshakespeare Data](https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt)
   * From the [char-rnn](https://github.com/karpathy/char-rnn) repo of Andrej Karpathy.
+* [A Programmer's Introduction to Unicode](https://www.reedbeta.com/blog/programmers-intro-to-unicode/)
+* [The Unicode Standard](https://www.unicode.org/versions/Unicode15.1.0/)
+* [Python3: Unicode HOWTO](https://docs.python.org/3/howto/unicode.html)
+* Wikipedia
+  * [Byte pair encoding](https://en.wikipedia.org/wiki/Byte_pair_encoding)
 
 # Bibliography
 - Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language Models are Unsupervised Multitask Learners. _arXiv preprint arXiv:1906.05231_. https://doi.org/10.48550/arXiv.1906.05231
