@@ -1,6 +1,6 @@
 """Unit tests for the byte pair encoding module."""
 
-from src.byte_pair_encoding import get_byte_pair_encoding
+from src.byte_pair_encoding_strings import get_byte_pair_encoding
 
 
 def test_get_byte_pair_encoding() -> None:

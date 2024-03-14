@@ -21,7 +21,7 @@ def get_pairs_in_string(text: str) -> Iterator[str]:
 def get_pairs_in_string_occurence_map(text: str) -> dict[str, int]:
     """Get a dictionary of pairs and their number of occurences."""
     assert isinstance(text, str)
-    pairs_counter: dict[tuple[str, str], int] = {}
+    pairs_counter: dict[str, int] = {}
     for pair in get_pairs_in_string(text):
         pairs_counter[pair] = pairs_counter.get(pair, 0) + 1
     return pairs_counter
