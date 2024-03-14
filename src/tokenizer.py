@@ -70,15 +70,18 @@ class Tokenizer:
         If it hasn't then it raises a RuntimeError.
         """
         _bytecodes: list[int] = bytecodes.copy()
-        for key, val in self.alphabet_map:
+        for key, val in self.alphabet_map.items():
             if val is not None:
                 i = 0
-                if (_bytecodes[i], _bytecodes[i + 1]) == val:
-                    _bytecodes[i] = key
-                    del _bytecodes[i + 1]
+                while True:
+                    if i >= len(_bytecodes) - 1:
+                        break
 
-                if i >= len(_bytecodes) - 1:
-                    break
+                    if (_bytecodes[i], _bytecodes[i + 1]) == val:
+                        _bytecodes[i] = key
+                        del _bytecodes[i + 1]
+
+                    i += 1
 
         return _bytecodes
 
@@ -92,7 +95,7 @@ class Tokenizer:
         """
         Converts the text to a bytecode and encodes it, returning the encoded bytecode.
         """
-        return self.encode(Tokenizer.bytecode_to_text(text))
+        return self.encode(Tokenizer.text_to_bytecode(text))
 
     def encode_string_to_string(self, text: str) -> str:
         """
@@ -109,15 +112,17 @@ class Tokenizer:
         if self.alphabet_map is None:
             raise RuntimeError("Alphabet not defined.")
 
-        _bytecode: list[int] = bytecode.copy()
+        _bytecodes: list[int] = bytecode.copy()
 
-        for key, val in self.alphabet_map:
+        for key, val in self.alphabet_map.items():
             if val is not None:
                 try:
                     while True:
-                        idx = _bytecode.index(key)
-                        _bytecode = _bytecode[:idx] + list(val) + bytecode[idx + 1 :]
+                        idx: int = _bytecodes.index(key)
+                        before: list[int] = _bytecodes[:idx]
+                        after: list[int] = _bytecodes[idx + 1 :]
+                        _bytecodes = before + list(val) + after
                 except ValueError:  # Exhausted all occurences in the list
                     pass
 
-        return bytecode
+        return _bytecodes
