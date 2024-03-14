@@ -40,6 +40,8 @@ def test_tokenizer_encode() -> None:
         assert tokenizer.encode_string(input_string) == expected_output
 
 
+# @RFI: We could have a huge test of randomly generated strings which encode
+#       and decode, checking if that encode(decode(x)) == x invariant holds.
 def test_tokenizer_decode() -> None:
     """Tests if decoding works on a simple string."""
     tokenizer = Tokenizer()
