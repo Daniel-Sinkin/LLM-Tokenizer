@@ -63,25 +63,42 @@ class Tokenizer:
         self.alphabet_map = alphabet_map
         return encoded_text
 
-    def encode_string(self, text: str) -> list[int]:
-        """
-        Encodes the text using the alphabet_map if the tokenizer has been trained before.
-
-        If it hasn't then it raises a RuntimeError.
-        """
-        if self.alphabet_map is None:
-            raise RuntimeError("Alphabet not defined.")
-
-        bytecode: list[int] = Tokenizer.text_to_bytecode(text)
-        return self.encode(bytecode)
-
-    def encode(self, bytecode: list[int]) -> list[int]:
+    def encode(self, bytecodes: list[int]) -> list[int]:
         """
         Encodes the bytecode using the alphabet_map if the tokenizer has been trained before.
 
         If it hasn't then it raises a RuntimeError.
         """
-        raise NotImplementedError()
+        _bytecodes: list[int] = bytecodes.copy()
+        for key, val in self.alphabet_map:
+            if val is not None:
+                i = 0
+                if (_bytecodes[i], _bytecodes[i + 1]) == val:
+                    _bytecodes[i] = key
+                    del _bytecodes[i + 1]
+
+                if i >= len(_bytecodes) - 1:
+                    break
+
+        return _bytecodes
+
+    def encode_to_string(self, bytecodes: list[int]) -> str:
+        """
+        Encodes the bytecode and then converts it back to a string.
+        """
+        return Tokenizer.bytecode_to_text(self.encode(bytecodes))
+
+    def encode_string(self, text: str) -> list[int]:
+        """
+        Converts the text to a bytecode and encodes it, returning the encoded bytecode.
+        """
+        return self.encode(Tokenizer.bytecode_to_text(text))
+
+    def encode_string_to_string(self, text: str) -> str:
+        """
+        Converts the text to a bytecode, encodes it and then converts it back to a string.
+        """
+        return Tokenizer.bytecode_to_text(self.encode_string(text))
 
     def decode(self, bytecode: list[int]) -> list[int]:
         """
