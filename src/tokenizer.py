@@ -2,6 +2,8 @@
 
 from typing import Optional
 
+import ujson as json
+
 from .byte_pair_encoding_bytecode import get_byte_pair_encoding
 
 
@@ -126,3 +128,11 @@ class Tokenizer:
                     pass
 
         return _bytecodes
+
+    def save_alphabet(self, path: str = "tokenizer_alphabet_map.json") -> None:
+        """Saves the alphabet to a file."""
+        if self.alphabet_map is None:
+            raise RuntimeError("Alphabet not defined.")
+
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(self.alphabet_map, f, indent=4)
