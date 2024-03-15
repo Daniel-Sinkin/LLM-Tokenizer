@@ -15,7 +15,7 @@ class Tokenizer:
     or can be trained on training data in form of a string.
     """
 
-    def __init__(self, alphabet_map: Optional[dict[str, tuple[int, int]]] = None):
+    def __init__(self, alphabet_map: dict[str, tuple[int, int]] = None):
         self.alphabet_map: Optional[dict[str, tuple[int, int]]] = alphabet_map
 
     @staticmethod
